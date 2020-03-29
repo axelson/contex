@@ -504,7 +504,18 @@ defmodule Contex.BarChart do
         _ -> {bar_start - 5 - 10 * index, "exc-barlabel-out"}
       end
 
-    text(text_x, text_y, label, text_anchor: "middle", class: class)
+    transform =
+      if String.length(label) >= 4 do
+        "rotate(-90, #{text_x + 2}, #{text_y})"
+      else
+        ""
+      end
+
+    text(text_x, text_y, label,
+      text_anchor: "middle",
+      class: class,
+      transform: transform
+    )
   end
 
   @doc """
